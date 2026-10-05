@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,9 @@
     <!-- Google Fonts: Kanit and Prompt for authentic Thai typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <style>
         body {
@@ -19,20 +22,25 @@
             background-color: #f3f7f9;
             color: #1e293b;
         }
+
         .font-heading {
             font-family: 'Kanit', sans-serif;
         }
+
         .hero-bg {
             background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #ffffff 100%);
         }
+
         .card-shadow {
             box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
         }
+
         .book-cover-shadow {
             box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.25);
         }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col">
 
     <!-- Header / Navbar -->
@@ -41,7 +49,8 @@
             <div class="flex justify-between items-center h-20">
                 <!-- Brand Logo -->
                 <a href="#" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-xl bg-teal-600 flex items-center justify-center text-white text-xl shadow-md group-hover:bg-teal-700 transition">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-teal-600 flex items-center justify-center text-white text-xl shadow-md group-hover:bg-teal-700 transition">
                         <i class="fa-solid fa-book-open"></i>
                     </div>
                     <span class="font-heading font-bold text-2xl tracking-wider text-slate-800">GUNGUN</span>
@@ -49,228 +58,358 @@
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden md:flex items-center space-x-8 text-slate-600 font-medium text-base">
-                    <a href="#" class="text-teal-600 border-b-2 border-teal-600 pb-1">หน้าแรก (Home)</a>
-                    <a href="#" class="hover:text-teal-600 transition">หมวดหมู่ (Browse) <i class="fa-solid fa-chevron-down text-xs ml-1"></i></a>
-                    <a href="#" class="hover:text-teal-600 transition">บทความ (Articles)</a>
-                    <a href="#" class="hover:text-teal-600 transition">เกี่ยวกับเรา (About)</a>
+                    <a href="#home"
+                        class="nav-item text-teal-600 border-b-2 border-teal-600 pb-1 transition-all duration-200"
+                        onclick="setActiveNav(this)">
+                        หน้าแรก (Home)
+                    </a>
+
+                    <!-- Dropdown หมวดหมู่ -->
+                    <div class="relative group">
+                        <button
+                            class="nav-item hover:text-teal-600 pb-1 flex items-center gap-1 transition-all duration-200"
+                            onclick="setActiveNav(this)">
+                            <span>หมวดหมู่ (Browse)</span>
+                            <i class="fa-solid fa-chevron-down text-xs ml-1"></i>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div
+                            class="absolute left-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-100 py-2 hidden group-hover:block transition-all duration-200">
+                            <a href="#manga"
+                                class="block px-4 py-2 text-sm text-slate-700 hover:bg-teal-50 hover:text-teal-600">มังงะ
+                                (Manga)</a>
+                            <a href="#novel"
+                                class="block px-4 py-2 text-sm text-slate-700 hover:bg-teal-50 hover:text-teal-600">นิยาย
+                                (Novel)</a>
+                            <a href="#article"
+                                class="block px-4 py-2 text-sm text-slate-700 hover:bg-teal-50 hover:text-teal-600">จิตวิทยา
+                                & พัฒนาตนเอง</a>
+                        </div>
+                    </div>
+
+                    <a href="#articles" class="nav-item hover:text-teal-600 pb-1 transition-all duration-200"
+                        onclick="setActiveNav(this)">
+                        บทความ (Articles)
+                    </a>
+                    <a href="#about" class="nav-item hover:text-teal-600 pb-1 transition-all duration-200"
+                        onclick="setActiveNav(this)">
+                        เกี่ยวกับเรา (About)
+                    </a>
                 </nav>
 
-                <!-- Language Selector -->
-                <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-slate-300 cursor-pointer transition">
-                    <span class="text-lg">🇹🇭</span>
-                    <span>Thai</span>
-                    <i class="fa-solid fa-chevron-down text-xs text-slate-400 ml-1"></i>
+                <!-- Language Selector Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-slate-300 transition">
+                        <span class="text-lg">🇹🇭</span>
+                        <span>Thai</span>
+                        <i class="fa-solid fa-chevron-down text-xs text-slate-400 ml-1"></i>
+                    </button>
+                    <!-- Language Menu -->
+                    <div
+                        class="absolute right-0 top-full mt-2 w-32 bg-white rounded-xl shadow-lg border border-slate-100 py-2 hidden group-hover:block transition-all">
+                        <a href="#"
+                            class="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-teal-50 hover:text-teal-600">
+                            <span>🇹🇭</span> Thai
+                        </a>
+                        <a href="#"
+                            class="flex items-center gap-2 px-4 py-2 text-sm text-slate-700 hover:bg-teal-50 hover:text-teal-600">
+                            <span>🇺🇸</span> English
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow">
-        <!-- Hero Section -->
-        <section class="hero-bg py-12 md:py-16 border-b border-slate-200/60 relative overflow-hidden">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <!-- Section Category Tag -->
-                <div class="text-center md:text-left mb-4">
-                    <span class="inline-block bg-teal-100 text-teal-800 font-semibold text-base sm:text-lg px-4 py-1.5 rounded-full border border-teal-200">
-                        <i class="fa-solid fa-star text-teal-600 mr-2"></i>แนะนำหนังสือ: กัปตันซึบาสะ Memories เล่ม 1
-                    </span>
-                </div>
+    <!-- สคริปต์สลับหน้า/สลับ Active Style -->
+    <script>
+        function setActiveNav(element) {
+            // ดึงเมนูทั้งหมดมาเพื่อลบ class สถานะ active เดิมออก
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('text-teal-600', 'border-b-2', 'border-teal-600');
+                item.classList.add('hover:text-teal-600');
+            });
 
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
-                    <!-- Catchy Tagline / Headline -->
-                    <div class="md:col-span-7 text-center md:text-left">
-                        <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
-                            ค้นหาจุดเริ่มต้นของ <br class="hidden sm:inline" />
-                            <span class="text-teal-600">ตำนานลูกหนัง...</span> <br />
-                            ที่จะปลุกไฟในตัวคุณ!
-                        </h1>
-                        <p class="text-slate-600 text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
-                            ย้อนเวลากลับสู่จุดเริ่มต้นของเด็กชายผู้รักฟุตบอลสุดหัวใจ พร้อมบทเรียนความพยายามที่จะสร้างแรงบันดาลใจให้ผู้อ่านทุกคน
-                        </p>
-                        
-                        <!-- Mini Details Badge -->
-                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-slate-500">
-                            <span class="flex items-center"><i class="fa-solid fa-user text-teal-600 mr-2"></i> ผู้เขียน: Yoichi Takahashi</span>
-                            <span class="flex items-center"><i class="fa-solid fa-book text-teal-600 mr-2"></i> หมวดหมู่: มังงะ / กีฬา</span>
-                        </div>
+            // ใส่ class สถานะ active ให้กับปุ่มที่เพิ่งถูกจิ้ม (คลิก)
+            element.classList.add('text-teal-600', 'border-b-2', 'border-teal-600');
+            element.classList.remove('hover:text-teal-600');
+        }
+    </script>
+
+    <!DOCTYPE html>
+    <html lang="th">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hero Section Slide Animation</title>
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- FontAwesome Icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <!-- 1. ดึงไฟล์ CSS ของ AOS -->
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    </head>
+
+    <body class="bg-slate-50 font-sans">
+
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section class="hero-bg py-12 md:py-16 border-b border-slate-200/60 relative overflow-hidden">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <!-- Section Category Tag (สไลด์ลงมาจากด้านบน หรือให้สไลด์จากซ้ายด้วยก็ได้) -->
+                    <div class="text-center md:text-left mb-4" data-aos="fade-down" data-aos-duration="800">
+                        <span
+                            class="inline-block bg-teal-100 text-teal-800 font-semibold text-base sm:text-lg px-4 py-1.5 rounded-full border border-teal-200">
+                            <i class="fa-solid fa-star text-teal-600 mr-2"></i>แนะนำหนังสือ: กัปตันซึบาสะ Memories เล่ม
+                            1
+                        </span>
                     </div>
 
-                    <!-- Book Cover Image Display -->
-                    <div class="md:col-span-5 flex justify-center">
-                        <div class="relative group max-w-xs sm:max-w-sm w-full">
-                            <!-- Background Decorator Glow -->
-                            <div class="absolute -inset-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-                            
-                            <!-- Book Cover Container -->
-                            <div class="relative bg-white p-3 rounded-2xl border border-slate-200 book-cover-shadow">
-                                <img src="images/tsubasa.jpg" 
-                                     alt="กัปตันซึบาสะ Memories เล่ม 1 Cover" 
-                                     class="w-full h-80 sm:h-96 object-cover rounded-xl shadow-inner">
-                                
-                                <!-- Floating Overlay Badge -->
-                                <div class="absolute top-6 right-6 bg-amber-400 text-slate-900 font-bold px-3 py-1 rounded-lg text-xs shadow-md">
-                                    HOT
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
 
-        <!-- Content Cards Grid -->
-        <section class="py-12 md:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Card 1: เกี่ยวกับหนังสือเล่มนี้ (About This Book) -->
-                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 card-shadow flex flex-col justify-between hover:border-teal-300 transition duration-300">
-                    <div>
-                        <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                            <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </div>
-                            <h2 class="font-heading text-2xl font-bold text-slate-800">เกี่ยวกับหนังสือเล่มนี้</h2>
-                        </div>
-
-                        <!-- Genre Tags -->
-                        <div class="mb-6">
-                            <h3 class="font-semibold text-slate-700 mb-3 flex items-center">
-                                <i class="fa-solid fa-tags text-teal-600 mr-2"></i>แนวหนังสือ:
-                            </h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-teal-50 text-teal-700 font-medium px-3.5 py-1.5 rounded-xl text-sm border border-teal-100">
-                                    มังงะกีฬา (Sport Manga)
-                                </span>
-                                <span class="bg-sky-50 text-sky-700 font-medium px-3.5 py-1.5 rounded-xl text-sm border border-sky-100">
-                                    ย้อนยุค (Retro)
-                                </span>
-                                <span class="bg-amber-50 text-amber-700 font-medium px-3.5 py-1.5 rounded-xl text-sm border border-amber-100">
-                                    สร้างแรงบันดาลใจ (Inspirational)
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Synopsis -->
-                        <div>
-                            <h3 class="font-semibold text-slate-700 mb-2 flex items-center">
-                                <i class="fa-solid fa-align-left text-teal-600 mr-2"></i>เรื่องย่อ:
-                            </h3>
-                            <p class="text-slate-600 leading-relaxed text-base">
-                                เรื่องราวเจาะลึกความหลังของซึบาสะในวัยเยาว์... ที่มาของความรักในฟุตบอลและการต่อสู้เพื่อความฝัน! ร่วมสัมผัสวินาทีแรกที่บอลกลายเป็นเพื่อนรัก และจุดเริ่มต้นเส้นทางชีวิตสู่การเป็นตำนานกัปตันทีมฟุตบอล
+                        <!-- 2. Catchy Tagline / ข้อความ: สไลด์เข้ามาจากทางด้านซ้าย (fade-right) -->
+                        <div class="md:col-span-7 text-center md:text-left" data-aos="fade-right"
+                            data-aos-duration="1000" data-aos-delay="100">
+                            <h1
+                                class="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-6">
+                                ค้นหาจุดเริ่มต้นของ <br class="hidden sm:inline" />
+                                <span class="text-teal-600">ตำนานลูกหนัง...</span> <br />
+                                ที่จะปลุกไฟในตัวคุณ!
+                            </h1>
+                            <p class="text-slate-600 text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
+                                ย้อนเวลากลับสู่จุดเริ่มต้นของเด็กชายผู้รักฟุตบอลสุดหัวใจ
+                                พร้อมบทเรียนความพยายามที่จะสร้างแรงบันดาลใจให้ผู้อ่านทุกคน
                             </p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Card 2: หนังสือเล่มนี้ให้อะไรกับคนอ่าน (What Readers Get) -->
-                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 card-shadow flex flex-col justify-between hover:border-teal-300 transition duration-300">
-                    <div>
-                        <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
-                            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl">
-                                <i class="fa-solid fa-lightbulb"></i>
+                            <!-- Mini Details Badge -->
+                            <div
+                                class="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-slate-500">
+                                <span class="flex items-center"><i class="fa-solid fa-user text-teal-600 mr-2"></i>
+                                    ผู้เขียน: Yoichi Takahashi</span>
+                                <span class="flex items-center"><i class="fa-solid fa-book text-teal-600 mr-2"></i>
+                                    หมวดหมู่: มังงะ / กีฬา</span>
                             </div>
-                            <h2 class="font-heading text-2xl font-bold text-slate-800">หนังสือเล่มนี้ให้อะไรกับคนอ่าน</h2>
                         </div>
 
-                        <!-- Takeaways List -->
-                        <ul class="space-y-4 text-slate-700">
-                            <li class="flex items-start gap-3">
-                                <div class="mt-1 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs shrink-0">
-                                    <i class="fa-solid fa-check"></i>
+                        <!-- 3. Book Cover Image Display: สไลด์เข้ามาจากทางด้านขวา (fade-left) -->
+                        <div class="md:col-span-5 flex justify-center" data-aos="fade-left" data-aos-duration="1000"
+                            data-aos-delay="200">
+                            <div class="relative group max-w-xs sm:max-w-sm w-full">
+                                <!-- Background Decorator Glow -->
+                                <div
+                                    class="absolute -inset-1 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300">
                                 </div>
-                                <span class="text-base leading-relaxed"><strong>แรงบันดาลใจที่ไม่สิ้นสุด</strong> ในความพยายามและการฝึกฝนอย่างไม่ท้อถอย</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="mt-1 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs shrink-0">
-                                    <i class="fa-solid fa-check"></i>
+
+                                <!-- Book Cover Container -->
+                                <div
+                                    class="relative bg-white p-3 rounded-2xl border border-slate-200 book-cover-shadow">
+                                    <img src="images/tsubasa.jpg" alt="กัปตันซึบาสะ Memories เล่ม 1 Cover"
+                                        class="w-full h-80 sm:h-96 object-cover rounded-xl shadow-inner">
+
+                                    <!-- Floating Overlay Badge -->
+                                    <div
+                                        class="absolute top-6 right-6 bg-amber-400 text-slate-900 font-bold px-3 py-1 rounded-lg text-xs shadow-md">
+                                        HOT
+                                    </div>
                                 </div>
-                                <span class="text-base leading-relaxed"><strong>คุณค่าของมิตรภาพและทีมเวิร์ก</strong> ที่สอนให้รู้ว่าไม่มีชัยชนะใดสร้างได้ด้วยตัวคนเดียว</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="mt-1 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs shrink-0">
-                                    <i class="fa-solid fa-check"></i>
-                                </div>
-                                <span class="text-base leading-relaxed"><strong>ความมุ่งมั่นที่ไม่ยอมแพ้ต่ออุปสรรค</strong> (Overcoming obstacles) แม้ในยามสิ้นหวัง</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <div class="mt-1 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs shrink-0">
-                                    <i class="fa-solid fa-check"></i>
-                                </div>
-                                <span class="text-base leading-relaxed"><strong>บรรยากาศย้อนยุคที่คิดถึง</strong> เติมเต็มความทรงจำวัยเด็กอันแสนอบอุ่น</span>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+            </section>
+        </main>
 
-            </div>
-        </section>
+        <!-- 4. ดึงสคริปต์ JS ของ AOS และสั่งเริ่มทำงาน (Init) -->
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({
+                once: true, // กำหนดให้เล่นแอนิเมชันครั้งเดียวตอนเลื่อนมาเจอ
+                easing: 'ease-out-cubic' // ลักษณะความสมูทในการเคลื่อนที่
+            });
+        </script>
+    </body>
 
-        <!-- Lower Section: CTA & Ratings -->
-        <section class="pb-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 card-shadow">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                    
-                    <!-- Call to Action Button Section -->
-                    <div class="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left">
-                        <h3 class="font-heading text-2xl font-bold text-slate-800 mb-3">
-                            สนใจอ่านเรื่องราวฉบับเต็ม?
+    </html>
+
+    <!-- Content Cards Grid -->
+    <section class="py-12 md:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Card 1: เกี่ยวกับหนังสือเล่มนี้ (สไลด์มาจากทางซ้าย) -->
+            <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100"
+                class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 card-shadow flex flex-col justify-between hover:border-teal-300 transition duration-300">
+                <div>
+                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+                        <h2 class="font-heading text-2xl font-bold text-slate-800">เกี่ยวกับหนังสือเล่มนี้</h2>
+                    </div>
+
+                    <!-- Genre Tags -->
+                    <div class="mb-6">
+                        <h3 class="font-semibold text-slate-700 mb-3 flex items-center">
+                            <i class="fa-solid fa-tags text-teal-600 mr-2"></i>แนวหนังสือ:
                         </h3>
-                        <p class="text-slate-600 mb-6">
-                            กดปุ่มด้านล่างเพื่อเข้าสู่บทวิเคราะห์และอ่านบทรีวิวฉบับเจาะลึก
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="bg-teal-50 text-teal-700 font-medium px-3.5 py-1.5 rounded-xl text-sm border border-teal-100">
+                                มังงะกีฬา (Sport Manga)
+                            </span>
+                            <span
+                                class="bg-sky-50 text-sky-700 font-medium px-3.5 py-1.5 rounded-xl text-sm border border-sky-100">
+                                ย้อนยุค (Retro)
+                            </span>
+                            <span
+                                class="bg-amber-50 text-amber-700 font-medium px-3.5 py-1.5 rounded-xl text-sm border border-amber-100">
+                                สร้างแรงบันดาลใจ (Inspirational)
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Synopsis -->
+                    <div>
+                        <h3 class="font-semibold text-slate-700 mb-2 flex items-center">
+                            <i class="fa-solid fa-align-left text-teal-600 mr-2"></i>เรื่องย่อ:
+                        </h3>
+                        <p class="text-slate-600 leading-relaxed text-base">
+                            เรื่องราวเจาะลึกความหลังของซึบาสะในวัยเยาว์...
+                            ที่มาของความรักในฟุตบอลและการต่อสู้เพื่อความฝัน!
+                            ร่วมสัมผัสวินาทีแรกที่บอลกลายเป็นเพื่อนรัก
+                            และจุดเริ่มต้นเส้นทางชีวิตสู่การเป็นตำนานกัปตันทีมฟุตบอล
                         </p>
-                        <a href="#review-section" 
-                           class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-900 text-white font-medium text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-0.5">
-                            <span>อ่านรีวิวฉบับเต็มและรายละเอียดเพิ่มเติม</span>
-                            <i class="fa-solid fa-arrow-right text-sm"></i>
-                        </a>
                     </div>
-
-                    <!-- Ratings & Reviews Card -->
-                    <div class="lg:col-span-6 bg-slate-50 p-6 rounded-2xl border border-slate-200/60" id-="review-section">
-                        <div class="flex items-center justify-between mb-4">
-                            <div>
-                                <h4 class="font-heading font-bold text-slate-800 text-lg">Ratings & Reviews</h4>
-                                <p class="text-slate-500 text-sm">จากผู้อ่านบน BOOKWISE</p>
-                            </div>
-                            <!-- Star Rating -->
-                            <div class="text-right">
-                                <div class="flex text-amber-400 text-lg gap-1">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                </div>
-                                <span class="font-bold text-slate-800 text-lg">4.5</span>
-                                <span class="text-slate-500 text-sm">/ 5.0</span>
-                            </div>
-                        </div>
-
-                        <!-- Sample Reader Review Box -->
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 text-sm text-slate-600">
-                            <div class="flex items-center gap-3 mb-2">
-                                <div class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-xs">
-                                    FB
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-slate-800">Football Fanclub</p>
-                                    <p class="text-xs text-slate-400">ยืนยันการอ่านแล้ว</p>
-                                </div>
-                            </div>
-                            <p class="italic">
-                                "อ่านแล้วตื้นตันและคิดถึงวัยเด็กมาก ทีมงานแปลออกมาได้ดี ปลุกพลังและสร้างแรงบันดาลใจได้ดีเหมือนเดิมเลยครับ!"
-                            </p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-        </section>
+
+            <!-- Card 2: หนังสือเล่มนี้ให้อะไรกับคนอ่าน (สไลด์มาจากทางขวา) -->
+            <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200"
+                class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 card-shadow flex flex-col justify-between hover:border-teal-300 transition duration-300">
+                <div>
+                    <div class="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <h2 class="font-heading text-2xl font-bold text-slate-800">หนังสือเล่มนี้ให้อะไรกับคนอ่าน
+                        </h2>
+                    </div>
+
+                    <!-- Takeaways List -->
+                    <ul class="space-y-4 text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="text-base leading-relaxed"><strong>แรงบันดาลใจที่ไม่สิ้นสุด</strong>
+                                ในความพยายามและการฝึกฝนอย่างไม่ท้อถอย</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="text-base leading-relaxed"><strong>คุณค่าของมิตรภาพและทีมเวิร์ก</strong>
+                                ที่สอนให้รู้ว่าไม่มีชัยชนะใดสร้างได้ด้วยตัวคนเดียว</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="text-base leading-relaxed"><strong>ความมุ่งมั่นที่ไม่ยอมแพ้ต่ออุปสรรค</strong>
+                                (Overcoming obstacles) แม้ในยามสิ้นหวัง</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <div
+                                class="mt-1 w-6 h-6 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center text-xs shrink-0">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="text-base leading-relaxed"><strong>บรรยากาศย้อนยุคที่คิดถึง</strong>
+                                เติมเต็มความทรงจำวัยเด็กอันแสนอบอุ่น</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Lower Section: CTA & Ratings -->
+    <section class="pb-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 card-shadow">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+                <!-- Call to Action Button Section -->
+                <div class="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <h3 class="font-heading text-2xl font-bold text-slate-800 mb-3">
+                        สนใจอ่านเรื่องราวฉบับเต็ม?
+                    </h3>
+                    <p class="text-slate-600 mb-6">
+                        กดปุ่มด้านล่างเพื่อเข้าสู่บทวิเคราะห์และอ่านบทรีวิวฉบับเจาะลึก
+                    </p>
+                    <a href="#review-section"
+                        class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-900 text-white font-medium text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-0.5">
+                        <span>อ่านรีวิวฉบับเต็มและรายละเอียดเพิ่มเติม</span>
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+
+                <!-- Ratings & Reviews Card -->
+                <div class="lg:col-span-6 bg-slate-50 p-6 rounded-2xl border border-slate-200/60" id-="review-section">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h4 class="font-heading font-bold text-slate-800 text-lg">Ratings & Reviews</h4>
+                            <p class="text-slate-500 text-sm">จากผู้อ่านบน BOOKWISE</p>
+                        </div>
+                        <!-- Star Rating -->
+                        <div class="text-right">
+                            <div class="flex text-amber-400 text-lg gap-1">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star-half-stroke"></i>
+                            </div>
+                            <span class="font-bold text-slate-800 text-lg">4.5</span>
+                            <span class="text-slate-500 text-sm">/ 5.0</span>
+                        </div>
+                    </div>
+
+                    <!-- Sample Reader Review Box -->
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 text-sm text-slate-600">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div
+                                class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-xs">
+                                FB
+                            </div>
+                            <div>
+                                <p class="font-semibold text-slate-800">Football Fanclub</p>
+                                <p class="text-xs text-slate-400">ยืนยันการอ่านแล้ว</p>
+                            </div>
+                        </div>
+                        <p class="italic">
+                            "อ่านแล้วตื้นตันและคิดถึงวัยเด็กมาก ทีมงานแปลออกมาได้ดี
+                            ปลุกพลังและสร้างแรงบันดาลใจได้ดีเหมือนเดิมเลยครับ!"
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 py-8">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+        <div
+            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
             <div class="flex items-center gap-2">
                 <span class="font-heading font-bold text-slate-800">GUNGUN</span>
                 <span>© 2026 สงวนลิขสิทธิ์</span>
@@ -285,4 +424,5 @@
     </footer>
 
 </body>
+
 </html>
