@@ -1,0 +1,21 @@
+/* div {
+    border: 2px solid;
+} */
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* จัดกึ่งกลางแนวนอน */
+  justify-content: center; /* จัดกึ่งกลางแนวตั้ง (ถ้ามีความสูงกำหนด) */
+  text-align: center;      /* จัดข้อความให้อยู่กึ่งกลาง */
+}
+
+
+.bg-lightgray {
+  background-color: #ECECEC;
+  color: #181818;
+}
+
+.text-darkblue {
+  color: #2a4395;
+}
